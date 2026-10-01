@@ -9,11 +9,6 @@ management:
       exposure:
         include: health,info
 
-server:
-  error:
-    include-stacktrace: never
-    include-message: always
-
 spring:
   data:
     redis:
