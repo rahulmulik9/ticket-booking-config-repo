@@ -27,3 +27,6 @@ logging:
   level:
     root: INFO
     com.rahul.userservice: DEBUG
+
+app:
+  seed-dev-users: true
