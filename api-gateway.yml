@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/api/auth/**
+
+            - id: cinema-service
+              uri: lb://cinema-service
+              predicates:
+                - Path=/movies/**, /shows/**, /api/holds/**
+
+            - id: booking-service
+              uri: lb://booking-service
+              predicates:
+                - Path=/api/bookings/**
+
+logging:
+  level:
+    root: INFO
+    com.rahul.apigateway: DEBUG
+    org.springframework.cloud.gateway: DEBUG
