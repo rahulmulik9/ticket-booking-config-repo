@@ -1,5 +1,8 @@
 server:
   port: 8082
+  error:
+    include-stacktrace: never
+    include-message: always
 
 spring:
   datasource:
@@ -20,7 +23,7 @@ spring:
     locations: classpath:db/migration
 
 seat-hold:
-  ttl-seconds: 30   # not used yet, it comes into play in the Redis stage
+  ttl-seconds: 30
 
 logging:
   level:
