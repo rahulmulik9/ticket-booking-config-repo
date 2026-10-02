@@ -1,5 +1,8 @@
 server:
   port: 8084
+  error:
+    include-stacktrace: never
+    include-message: always
 
 spring:
   datasource:
@@ -10,10 +13,13 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: validate
   flyway:
     enabled: true
     locations: classpath:db/migration
+
+payment:
+  max-amount: 1000
 
 logging:
   level:
