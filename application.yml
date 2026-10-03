@@ -22,6 +22,7 @@ jwt:
 logging:
   level:
     root: ERROR
+    org.springframework.boot.StartupInfoLogger: INFO
     com.rahul.bookingservice.kafka: INFO
     com.rahul.cinemaservice.kafka: INFO
     com.rahul.paymentservice.kafka: INFO

@@ -23,7 +23,3 @@ spring:
                 - Path=/api/bookings/**
 
 
-logging:
-  level:
-    root: INFO
-    com.rahul.apigateway: DEBUG
