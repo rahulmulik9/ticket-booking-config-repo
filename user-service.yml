@@ -25,10 +25,6 @@ jwt:
 app:
   seed-dev-users: true
 
-logging:
-  level:
-    root: INFO
-    com.rahul.userservice: DEBUG
 
 login-limit:
   max-attempts: 5

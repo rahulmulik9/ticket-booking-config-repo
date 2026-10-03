@@ -18,3 +18,11 @@ spring:
 
 jwt:
   secret: dev-only-secret-key-change-in-prod-min-32-chars
+
+logging:
+  level:
+    root: ERROR
+    com.rahul.bookingservice.kafka: INFO
+    com.rahul.cinemaservice.kafka: INFO
+    com.rahul.paymentservice.kafka: INFO
+    com.rahul.notificationservice.kafka: INFO
