@@ -26,5 +26,5 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
       properties:
-        spring.json.type.mapping: bookingRequested:com.rahul.cinemaservice.event.BookingRequested
-        spring.json.trusted.packages: com.rahul.cinemaservice.event
+        spring.json.type.mapping: bookingRequested:com.rahul.cinemaservice.kafka.event.BookingRequested
+        spring.json.trusted.packages: com.rahul.cinemaservice.kafka.event

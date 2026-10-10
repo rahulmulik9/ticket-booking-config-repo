@@ -22,4 +22,4 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
       properties:
         max.block.ms: 3000
-        spring.json.type.mapping: bookingRequested:com.rahul.bookingservice.event.BookingRequested
+        spring.json.type.mapping: bookingRequested:com.rahul.bookingservice.kafka.event.BookingRequested
