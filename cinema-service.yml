@@ -19,3 +19,12 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+  kafka:
+    consumer:
+      group-id: cinema-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+      properties:
+        spring.json.type.mapping: bookingRequested:com.rahul.cinemaservice.event.BookingRequested
+        spring.json.trusted.packages: com.rahul.cinemaservice.event
