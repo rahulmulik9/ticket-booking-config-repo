@@ -19,12 +19,25 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
-  kafka:
-    consumer:
-      group-id: cinema-service
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
-      properties:
-        spring.json.type.mapping: bookingRequested:com.rahul.cinemaservice.kafka.event.BookingRequested
-        spring.json.trusted.packages: com.rahul.cinemaservice.kafka.event
+  spring:
+    kafka:
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+        properties:
+          max.block.ms: 3000
+          spring.json.type.mapping: seatBooked:com.rahul.cinemaservice.kafka.event.SeatBookedEvent,seatBookingFailed:com.rahul.cinemaservice.kafka.event.SeatBookingFailedEvent
+      consumer:
+        group-id: cinema-service
+        auto-offset-reset: earliest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+        properties:
+          spring.json.type.mapping: "\
+                    seatReservation:com.rahul.cinemaservice.kafka.event.SeatReservationEvent,\
+                    seatRelease:com.rahul.cinemaservice.kafka.event.SeatReleaseEvent,\
+                    paymentRequest:com.rahul.cinemaservice.kafka.event.IgnoredEvent,\
+                    refundRequest:com.rahul.cinemaservice.kafka.event.IgnoredEvent,\
+                    bookingCompleted:com.rahul.cinemaservice.kafka.event.IgnoredEvent,\
+                    bookingFailed:com.rahul.cinemaservice.kafka.event.IgnoredEvent,\
+                    bookingCancelled:com.rahul.cinemaservice.kafka.event.IgnoredEvent"
