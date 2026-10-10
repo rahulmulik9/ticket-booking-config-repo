@@ -23,20 +23,20 @@ spring:
       properties:
         max.block.ms: 3000
         spring.json.type.mapping: "\
-              seatReservation:com.rahul.bookingservice.kafka.event.cinema.SeatReservationEvent,\
-              seatRelease:com.rahul.bookingservice.kafka.event.cinema.SeatReleaseEvent,\
-              paymentRequest:com.rahul.bookingservice.kafka.event.payment.PaymentRequestEvent,\
-              refundRequest:com.rahul.bookingservice.kafka.event.payment.RefundRequestEvent,\
-              bookingCompleted:com.rahul.bookingservice.kafka.event.notification.BookingCompletedEvent,\
-              bookingFailed:com.rahul.bookingservice.kafka.event.notification.BookingFailedEvent,\
-              bookingCancelled:com.rahul.bookingservice.kafka.event.notification.BookingCancelledEvent"
+          seatReservation:com.rahul.bookingservice.kafka.event.cinema.SeatReservationEvent,\
+          seatRelease:com.rahul.bookingservice.kafka.event.cinema.SeatReleaseEvent,\
+          paymentRequest:com.rahul.bookingservice.kafka.event.payment.PaymentRequestEvent,\
+          refundRequest:com.rahul.bookingservice.kafka.event.payment.RefundRequestEvent,\
+          bookingCompleted:com.rahul.bookingservice.kafka.event.notification.BookingCompletedEvent,\
+          bookingFailed:com.rahul.bookingservice.kafka.event.notification.BookingFailedEvent,\
+          bookingCancelled:com.rahul.bookingservice.kafka.event.notification.BookingCancelledEvent"
 
-      consumer:
-        group-id: booking-service
-        auto-offset-reset: earliest
-        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-        value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
-        properties:
-          spring.json.type.mapping: "\
-              seatBooked:com.rahul.bookingservice.kafka.event.cinema.SeatBookedEvent,\
-              seatBookingFailed:com.rahul.bookingservice.kafka.event.cinema.SeatBookingFailedEvent"
+    consumer:
+      group-id: booking-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+      properties:
+        spring.json.type.mapping: "\
+          seatBooked:com.rahul.bookingservice.kafka.event.cinema.SeatBookedEvent,\
+          seatBookingFailed:com.rahul.bookingservice.kafka.event.cinema.SeatBookingFailedEvent"
