@@ -1,0 +1,23 @@
+server:
+  port: 8084
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5436/paymentdb
+    username: postgres
+    password: postgres
+    hikari:
+      pool-name: PaymentPool
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+# The fake gateway declines any amount above this. Lower it to test the FAILED path.
+payment:
+  gateway:
+    max-amount: 10000

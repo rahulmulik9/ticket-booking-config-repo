@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/userdb
+    username: postgres
+    password: postgres
+    hikari:
+      pool-name: UserPool
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+# Only User signs tokens, so only User needs these two.
+jwt:
+  access-token-minutes: 15
+  refresh-token-days: 7
+
+app:
+  seed:
+    enabled: true
