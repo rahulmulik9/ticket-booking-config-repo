@@ -16,3 +16,10 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      properties:
+        max.block.ms: 3000
+        spring.json.type.mapping: bookingRequested:com.rahul.bookingservice.event.BookingRequested
