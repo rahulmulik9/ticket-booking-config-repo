@@ -39,4 +39,8 @@ spring:
       properties:
         spring.json.type.mapping: "\
           seatBooked:com.rahul.bookingservice.kafka.event.cinema.SeatBookedEvent,\
-          seatBookingFailed:com.rahul.bookingservice.kafka.event.cinema.SeatBookingFailedEvent"
+          seatBookingFailed:com.rahul.bookingservice.kafka.event.cinema.SeatBookingFailedEvent,\
+          paymentCompleted:com.rahul.bookingservice.kafka.event.payment.PaymentCompletedEvent,\
+          paymentFailed:com.rahul.bookingservice.kafka.event.payment.PaymentFailedEvent,\
+          refundCompleted:com.rahul.bookingservice.kafka.event.payment.RefundCompletedEvent,\
+          refundFailed:com.rahul.bookingservice.kafka.event.payment.RefundFailedEvent"
