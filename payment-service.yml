@@ -35,3 +35,4 @@ spring:
 payment:
   gateway:
     max-amount: 10000
+    fail-refunds: false
