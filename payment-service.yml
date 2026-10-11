@@ -16,6 +16,20 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      properties:
+        max.block.ms: 3000
+        spring.json.type.mapping: paymentCompleted:com.rahul.paymentservice.kafka.event.PaymentCompletedEvent,paymentFailed:com.rahul.paymentservice.kafka.event.PaymentFailedEvent,refundCompleted:com.rahul.paymentservice.kafka.event.RefundCompletedEvent,refundFailed:com.rahul.paymentservice.kafka.event.RefundFailedEvent
+    consumer:
+      group-id: payment-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+      properties:
+        spring.json.type.mapping: paymentRequest:com.rahul.paymentservice.kafka.event.PaymentRequestEvent,refundRequest:com.rahul.paymentservice.kafka.event.RefundRequestEvent,seatReservation:com.rahul.paymentservice.kafka.event.IgnoredEvent,seatRelease:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingCompleted:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingFailed:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingCancelled:com.rahul.paymentservice.kafka.event.IgnoredEvent
 
 # The fake gateway declines any amount above this. Lower it to test the FAILED path.
 payment:
