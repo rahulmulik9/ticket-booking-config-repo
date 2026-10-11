@@ -22,12 +22,9 @@ spring:
   kafka:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
         max.block.ms: 3000
-        spring.json.type.mapping: "\
-          seatBooked:com.rahul.cinemaservice.kafka.event.SeatBookedEvent,\
-          seatBookingFailed:com.rahul.cinemaservice.kafka.event.SeatBookingFailedEvent"
 
     consumer:
       group-id: cinema-service

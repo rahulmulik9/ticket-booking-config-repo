@@ -19,10 +19,9 @@ spring:
   kafka:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
         max.block.ms: 3000
-        spring.json.type.mapping: paymentCompleted:com.rahul.paymentservice.kafka.event.PaymentCompletedEvent,paymentFailed:com.rahul.paymentservice.kafka.event.PaymentFailedEvent,refundCompleted:com.rahul.paymentservice.kafka.event.RefundCompletedEvent,refundFailed:com.rahul.paymentservice.kafka.event.RefundFailedEvent
     consumer:
       group-id: payment-service
       auto-offset-reset: earliest

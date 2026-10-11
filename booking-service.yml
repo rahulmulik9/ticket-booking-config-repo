@@ -19,17 +19,9 @@ spring:
   kafka:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
         max.block.ms: 3000
-        spring.json.type.mapping: "\
-          seatReservation:com.rahul.bookingservice.kafka.event.cinema.SeatReservationEvent,\
-          seatRelease:com.rahul.bookingservice.kafka.event.cinema.SeatReleaseEvent,\
-          paymentRequest:com.rahul.bookingservice.kafka.event.payment.PaymentRequestEvent,\
-          refundRequest:com.rahul.bookingservice.kafka.event.payment.RefundRequestEvent,\
-          bookingCompleted:com.rahul.bookingservice.kafka.event.notification.BookingCompletedEvent,\
-          bookingFailed:com.rahul.bookingservice.kafka.event.notification.BookingFailedEvent,\
-          bookingCancelled:com.rahul.bookingservice.kafka.event.notification.BookingCancelledEvent"
 
     consumer:
       group-id: booking-service
