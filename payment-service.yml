@@ -18,16 +18,18 @@ spring:
     locations: classpath:db/migration
   kafka:
     producer:
-      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserialize
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
         max.block.ms: 3000
     consumer:
       group-id: payment-service
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
         spring.json.type.mapping: paymentRequest:com.rahul.paymentservice.kafka.event.PaymentRequestEvent,refundRequest:com.rahul.paymentservice.kafka.event.RefundRequestEvent,seatReservation:com.rahul.paymentservice.kafka.event.IgnoredEvent,seatRelease:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingCompleted:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingFailed:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingCancelled:com.rahul.paymentservice.kafka.event.IgnoredEvent
 
 # The fake gateway declines any amount above this. Lower it to test the FAILED path.
