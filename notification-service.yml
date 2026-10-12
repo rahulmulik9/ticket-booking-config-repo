@@ -20,7 +20,7 @@ spring:
     consumer:
       group-id: notification-service
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserialize
       properties:
         spring.json.type.mapping: bookingCompleted:com.rahul.notificationservice.kafka.event.BookingCompletedEvent,bookingFailed:com.rahul.notificationservice.kafka.event.BookingFailedEvent,bookingCancelled:com.rahul.notificationservice.kafka.event.BookingCancelledEvent,seatReservation:com.rahul.notificationservice.kafka.event.IgnoredEvent,seatRelease:com.rahul.notificationservice.kafka.event.IgnoredEvent,paymentRequest:com.rahul.notificationservice.kafka.event.IgnoredEvent,refundRequest:com.rahul.notificationservice.kafka.event.IgnoredEvent
