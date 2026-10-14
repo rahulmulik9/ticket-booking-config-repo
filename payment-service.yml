@@ -32,8 +32,10 @@ spring:
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
         spring.json.type.mapping: paymentRequest:com.rahul.paymentservice.kafka.event.PaymentRequestEvent,refundRequest:com.rahul.paymentservice.kafka.event.RefundRequestEvent,seatReservation:com.rahul.paymentservice.kafka.event.IgnoredEvent,seatRelease:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingCompleted:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingFailed:com.rahul.paymentservice.kafka.event.IgnoredEvent,bookingCancelled:com.rahul.paymentservice.kafka.event.IgnoredEvent
 
-# The fake gateway declines any amount above this. Lower it to test the FAILED path.
 payment:
   gateway:
-    max-amount: 10000
-    fail-refunds: false
+    async-enabled: true            # false = old instant behaviour
+    webhook-delay-ms: 2000
+    send-duplicate-webhook: false  # true = send every webhook twice
+  webhook:
+    secret: ${WEBHOOK_SECRET:dev-only-secret}   # real secret from an environment variable
